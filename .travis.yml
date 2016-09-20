@@ -1,8 +1,4 @@
 language: cpp
 compiler: clang
-#addons:
-#    apt:
-#        packages:
-#        - catch
 install: true
 script: ./critic test
