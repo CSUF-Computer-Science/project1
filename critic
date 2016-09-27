@@ -75,9 +75,6 @@ def build():
     return (compile(['catalog_test.cpp'],
                    [],
                    ['catalog_test']) and
-            compile(['receipt_test.cpp'],
-                   [],
-                   ['receipt_test']) and
             compile(['datafile_test.cpp'],
                    [],
                    ['datafile_test']))
@@ -85,7 +82,6 @@ def build():
 def test():
     return (build() and
             command(['./catalog_test']) and
-            command(['./receipt_test']) and
             command(['./datafile_test']))
 
 def team():
