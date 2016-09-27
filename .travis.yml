@@ -1,4 +1,8 @@
 language: cpp
 compiler: clang
+addons:
+    apt:
+        packages:
+        - python3
 install: true
 script: ./critic test
