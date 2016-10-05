@@ -22,11 +22,12 @@ public:
   //
   // price is in units of dollars. It must be positive, or else this
   // function throws std::invalid_argument.
-  Product(const std::string& code,
-          const std::string& name,
-          double price) {
+  Product(const std::string& _code,
+          const std::string& _name,
+          double _price) : code(_code), name(_name), price(_price) {
     // TODO: implement this function properly
     throw std::logic_error("not implemented yet");
+    if (price < 0) throw std::invalid_argument("Price must be positive")
   }
 
   ~Product() { }
@@ -108,4 +109,6 @@ public:
 
 private:
   // TODO: add data members
+  Product* a;
+  
 };
