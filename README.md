@@ -4,6 +4,8 @@ Project 1
 
 Group members:
 
+Sarah Nuno saritanu@csu.fullerton.edu
+
 Ada Lovelace adalovelace@csu.fullerton.edu
 
 Charles Babbage charlesbab@csu.fullerton.edu
