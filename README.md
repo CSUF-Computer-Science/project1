@@ -6,6 +6,6 @@ Group members:
 
 Sarah Nuno saritanu@csu.fullerton.edu
 
-Ada Lovelace adalovelace@csu.fullerton.edu
+Momtaz Afredi mafredi1@csu.fullerton.edu
 
-Charles Babbage charlesbab@csu.fullerton.edu
+Elias Perez elias@csu.fullerton.edu
