@@ -65,7 +65,7 @@ public:
 	// std::invalid_argument.
 	Catalog(int _maxProducts) {
 		// TODO: implement this function properly
-		if (_maxProducts < 0)
+		if (_maxProducts <= 0)
 		{
 			throw std::invalid_argument("not implemented yet");
 		}
@@ -124,30 +124,26 @@ public:
 		double _price) {
 		// TODO: implement this function properly
 		for (int i = 0; i < numProducts; i++) {
-			if (isFull())
+			if (ptr[i].getCode() == _code)
 			{
 				throw std::invalid_argument("not implemented yet");
 			}
+			if (_price < 0)
+			{
+				throw std::invalid_argument("not implemented yet");
+			}
+
+		}
+
+			if (isFull()) {
+				throw std::overflow_error("not implemented yet");
+			}
 			else
 			{
-				if (ptr[i].getCode() == _code)
-				{
-					throw std::invalid_argument("not implemented yet");
-				}
-				else
-				{
-					if (_price < 0)
-					{
-						throw std::invalid_argument("not implemented yet");
-					}
-					else
-					{
-						ptr[numProducts-1] = Product(_code, _name, _price);
-					}
-				}
+				//ptr[numProducts] = new Product(_code, _name, _price);
+				numProducts++;
 			}
-		}
-		numProducts++;
+		//numProducts++;
 	}
 
 	// Find a product by its code.
