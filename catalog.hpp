@@ -64,9 +64,9 @@ public:
 	// std::invalid_argument.
 	Catalog(int _maxProducts) {
 		// TODO: implement this function properly
-		if (maxProducts > 130000)
+		if (_maxProducts > 130000)
 		{
-			maxProducts = 130000;
+			_maxProducts = 130000;
 		}
 		maxProducts = _maxProducts;
 		if (maxProducts <= 0)
