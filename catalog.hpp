@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <string>
 
+
 // A product represents one particular kind of product, such as apples
 // or cereal.
 class Product {
