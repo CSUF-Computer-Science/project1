@@ -22,11 +22,23 @@ public:
   //
   // price is in units of dollars. It must be positive, or else this
   // function throws std::invalid_argument.
-  Product(const std::string& code,
-          const std::string& name,
-          double price) {
-    // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+ 
+	Product() {
+		code = "";
+		name = "";
+		price = 0;
+	}
+
+	Product(const std::string& ucode, const std::string& uname, double uprice) {
+  // TODO: implement this function properly
+	if(uprice < 0) {
+		throw std::invalid_argument("Must be positive.");
+	}
+	else {
+		code = ucode;
+		name = uname;
+		price = uprice;
+	}
   }
 
   ~Product() { }
@@ -52,29 +64,35 @@ public:
   // std::invalid_argument.
   Catalog(int maxProducts) {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  if (maxProducts <= 0) {
+		throw std::invalid_argument("Must be positive.");
+	}
+	else {
+		max = maxProducts;
+		ptr = new Product[max];
+	}
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  delete[] ptr;
   }
 
   // Accessors.
   int getMaxProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+		  return max;
   }
-  
+
   int getNumProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  return n;
   }
 
   // Return true when the catalog cannot fit any more products.
   bool isFull() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  return n == max;
   }
 
   // Add a new product to the catalog with a given code and name.
@@ -86,11 +104,25 @@ public:
   //
   // Code must be different from all the product codes already in the
   // database. If it's not, throw std::invalid_argument.
-  void addProduct(const std::string& code,
-                  const std::string& name,
-                  double price) {
+  void addProduct(const std::string& ucode,
+                  const std::string& uname,
+                  double uprice) {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  for (int i = 0; i < n; i++) {
+		  if (ptr[i].getCode() == ucode) {
+			  throw std::invalid_argument("Already in database.");
+		  }
+	  }
+		  if (uprice < 0) {
+			  throw std::invalid_argument("Price is invalid.");
+		  }
+		  else if (isFull()) {
+			  throw std::overflow_error("Catalog is full.");
+		  }
+		  else {
+			  ptr[n] = Product(ucode, uname, uprice);
+			  n++;
+		  }  	 
   }
 
   // Find a product by its code.
@@ -101,11 +133,18 @@ public:
   //
   // Throw std::invalid_argument if no product with that code exists
   // in the catalog.
-  const Product& findCode(const std::string& code) const {
+  const Product& findCode(const std::string& ucode) const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+	  for (int i = 0; i < n; i++) {
+		  if (ptr[i].getCode() == ucode) {
+			  return ptr[i];
+		  }
+	  }
+	  throw std::invalid_argument("Code not found.");
   }
 
 private:
   // TODO: add data members
+	int n, max; //index of products, max number of products
+	Product *ptr;
 };
