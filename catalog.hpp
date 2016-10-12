@@ -173,5 +173,5 @@ private:
 	// TODO: add data members
 	Product *ptr;
 	int maxProducts;
-	int numProducts;
+	int numProducts = 0;
 };
