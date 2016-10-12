@@ -33,7 +33,7 @@ public:
 		double _price) {
 		// TODO: implement this function properly
 		if (_price < 0 || _code.length() > 14) {
-			throw std::invalid_argument("not implemented yet");
+			throw std::invalid_argument("price must be positive and code length must be 14");
 		}
 		else {
 			name = _name;
@@ -68,13 +68,13 @@ public:
 		{
 			maxProducts = 130000;
 		}
-		if (_maxProducts <= 0)
+		maxProducts = _maxProducts;
+		if (maxProducts <= 0)
 		{
-			throw std::invalid_argument("not implemented yet");
+			throw std::invalid_argument("max must be positive integer");
 		}
-		else 
+		else
 		{
-			maxProducts = _maxProducts;
 			ptr = new Product[maxProducts];
 		}
 
@@ -84,16 +84,13 @@ public:
 		// TODO: implement this function properly
 		delete[] ptr;
 		ptr = NULL;
-			
+
 	}
 
 	// Accessors.
 	int getMaxProducts() const {
 		// TODO: implement this function properly
-		/*if (maxProducts < 0)
-			throw std::invalid_argument("not implemented yet");
-		else*/
-			return maxProducts;
+		return maxProducts;
 	}
 
 	int getNumProducts() const {
@@ -126,27 +123,27 @@ public:
 		const std::string& _name,
 		double _price) {
 		// TODO: implement this function properly
-		
+
 		if (isFull())
 		{
 			throw std::overflow_error("No entry can be made, Catalog is full");
 		}
-		if(!isFull())
-		{ 
+		if (!isFull())
+		{
 			if (_price <= 0.0)
-				throw std::invalid_argument("Error: Price must be greater than 0.");
+				throw std::invalid_argument("Price must be greater than 0.");
 			else
-			{ 
+			{
 				for (int i = 0; i < numProducts; i++)
 				{
 					if (ptr[i].getCode() == _code)
-						throw std::invalid_argument("not implemented yet");
+						throw std::invalid_argument("Already exist");
 				}
 			}
 		}
-	Product temp(_code, _name, _price);
-	ptr[numProducts] = temp;
-	numProducts++;
+		Product temp(_code, _name, _price);
+		ptr[numProducts] = temp;
+		numProducts++;
 	}
 
 	// Find a product by its code.
@@ -157,7 +154,7 @@ public:
 	//
 	// Throw std::invalid_argument if no product with that code exists
 	// in the catalog.
-	const Product& findCode(const std::string& _code) const 
+	const Product& findCode(const std::string& _code) const
 	{
 		// TODO: implement this function properly
 		for (int i = 0; i < numProducts; i++)
@@ -166,9 +163,9 @@ public:
 			{
 				return ptr[i];
 			}
-			
+
 		}
-	throw std::invalid_argument("not implemented yet");
+		throw std::invalid_argument("search failed");
 	}
 
 
