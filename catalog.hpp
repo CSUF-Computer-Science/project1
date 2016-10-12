@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include <string>
 
-
 // A product represents one particular kind of product, such as apples
 // or cereal.
 class Product {
@@ -34,7 +33,7 @@ public:
 		double _price) {
 		// TODO: implement this function properly
 		if (_price < 0 || _code.length() > 14) {
-			throw std::logic_error("not implemented yet");
+			throw std::invalid_argument("not implemented yet");
 		}
 		else {
 			name = _name;
@@ -66,9 +65,12 @@ public:
 	// std::invalid_argument.
 	Catalog(int _maxProducts) {
 		// TODO: implement this function properly
-		if (maxProducts < 0)
-			throw std::logic_error("not implemented yet");
-		else {
+		if (_maxProducts < 0)
+		{
+			throw std::invalid_argument("not implemented yet");
+		}
+		else 
+		{
 			maxProducts = _maxProducts;
 			ptr = new Product[_maxProducts];
 		}
@@ -85,9 +87,9 @@ public:
 	// Accessors.
 	int getMaxProducts() const {
 		// TODO: implement this function properly
-		if (maxProducts < 0)
-			throw std::logic_error("not implemented yet");
-		else 
+		/*if (maxProducts < 0)
+			throw std::invalid_argument("not implemented yet");
+		else*/
 			return maxProducts;
 	}
 
@@ -99,7 +101,13 @@ public:
 	// Return true when the catalog cannot fit any more products.
 	bool isFull() const {
 		// TODO: implement this function properly
-		return (numProducts == maxProducts);
+		if (numProducts == maxProducts) {
+			return true;
+
+		}
+		else {
+			return false;
+		}
 	}
 
 	// Add a new product to the catalog with a given code and name.
@@ -118,19 +126,19 @@ public:
 		for (int i = 0; i < numProducts; i++) {
 			if (isFull())
 			{
-				throw std::logic_error("not implemented yet");
+				throw std::invalid_argument("not implemented yet");
 			}
 			else
 			{
 				if (ptr[i].getCode() == _code)
 				{
-					throw std::logic_error("not implemented yet");
+					throw std::invalid_argument("not implemented yet");
 				}
 				else
 				{
 					if (_price < 0)
 					{
-						throw std::logic_error("not implemented yet");
+						throw std::invalid_argument("not implemented yet");
 					}
 					else
 					{
@@ -154,18 +162,23 @@ public:
 	{
 		// TODO: implement this function properly
 
+		bool found = false;
 		for (int i = 0; i < numProducts; i++) 
 		{
 			if (ptr[i].getCode() == _code) 
 			{
 				return ptr[i];
+				found = true;
 			}
-			else 
-			{
-				throw std::logic_error("not implemented yet");
-			}
+			//else 
+			//{
+			//	throw std::logic_error("not implemented yet");
+			//}
 		}
+		if(!found)
+			throw std::invalid_argument("not implemented yet");
 	}
+
 
 private:
 	// TODO: add data members
