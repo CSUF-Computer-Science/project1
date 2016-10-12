@@ -4,6 +4,8 @@ Project 1
 
 Group members:
 
-Ada Lovelace adalovelace@csu.fullerton.edu
+Anthony Rodriguez a.rodriguez525@csu.fullerton.edu
 
-Charles Babbage charlesbab@csu.fullerton.edu
+Ying Wen ywen1306@csu.fullerton.edu
+
+Erik Aguilar Eza075761@csu.fullerton.edu
