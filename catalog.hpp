@@ -42,7 +42,6 @@ public:
 		}
 	}
 
-	~Product() { }
 
 	// Accessors.
 	const std::string& getCode() const { return code; }
@@ -65,6 +64,10 @@ public:
 	// std::invalid_argument.
 	Catalog(int _maxProducts) {
 		// TODO: implement this function properly
+		if (maxProducts > 130000)
+		{
+			maxProducts = 130000;
+		}
 		if (_maxProducts <= 0)
 		{
 			throw std::invalid_argument("not implemented yet");
@@ -72,7 +75,7 @@ public:
 		else 
 		{
 			maxProducts = _maxProducts;
-			ptr = new Product[_maxProducts];
+			ptr = new Product[maxProducts];
 		}
 
 	}
@@ -123,27 +126,27 @@ public:
 		const std::string& _name,
 		double _price) {
 		// TODO: implement this function properly
-		for (int i = 0; i < numProducts; i++) {
-			if (ptr[i].getCode() == _code)
-			{
-				throw std::invalid_argument("not implemented yet");
-			}
-			if (_price < 0)
-			{
-				throw std::invalid_argument("not implemented yet");
-			}
-
+		
+		if (isFull())
+		{
+			throw std::overflow_error("No entry can be made, Catalog is full");
 		}
-
-			if (isFull()) {
-				throw std::overflow_error("not implemented yet");
-			}
+		if(!isFull())
+		{ 
+			if (_price <= 0.0)
+				throw std::invalid_argument("Error: Price must be greater than 0.");
 			else
-			{
-				//ptr[numProducts] = new Product(_code, _name, _price);
-				numProducts++;
+			{ 
+				for (int i = 0; i < numProducts; i++)
+				{
+					if (ptr[i].getCode() == _code)
+						throw std::invalid_argument("not implemented yet");
+				}
 			}
-		//numProducts++;
+		}
+	Product temp(_code, _name, _price);
+	ptr[numProducts] = temp;
+	numProducts++;
 	}
 
 	// Find a product by its code.
@@ -157,22 +160,15 @@ public:
 	const Product& findCode(const std::string& _code) const 
 	{
 		// TODO: implement this function properly
-
-		bool found = false;
-		for (int i = 0; i < numProducts; i++) 
+		for (int i = 0; i < numProducts; i++)
 		{
-			if (ptr[i].getCode() == _code) 
+			if (ptr[i].getCode() == _code)
 			{
 				return ptr[i];
-				found = true;
 			}
-			//else 
-			//{
-			//	throw std::logic_error("not implemented yet");
-			//}
+			
 		}
-		if(!found)
-			throw std::invalid_argument("not implemented yet");
+	throw std::invalid_argument("not implemented yet");
 	}
 
 
