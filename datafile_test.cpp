@@ -17,7 +17,7 @@ int main() {
     } catch (runtime_error e) {
       threw = true;
     }
-    assert(true);
+    assert(threw);
   }
 
   cout << "Invalid file format" << endl;
@@ -28,7 +28,7 @@ int main() {
     } catch (runtime_error e) {
       threw = true;
     }
-    assert(true);
+    assert(threw);
   }
 
   cout << "Loading works" << endl;
